@@ -1,33 +1,25 @@
 <?php
-// echo 'Hello World';
 
-// kõik muutujad algavad $ märgiga ja semikoolon ; on oluline plokkide lõpus
-
-$num = 10;
-$num =10.2;
-$name = 'Christina';
-// ühekordsed jutumärgid - sellevaheline esitatakse alati tekstina
-$num = 'Hello World';
-// siin on oluline vahe, kas "" või ''. Topeltjutumärgid oskavad tõlgendada reavahemärki ja muutujaid
-$num = "Hello \n$name";
-// kui vaja multiline teksti
-$num = <<<END
-Hello
-$name
-END;
-$num = true;
-$num = false;
-$num = null;
-// on olemas array-d, on olemas kaks viisi, vanem viis
-$num = array(1,2,3,3,4);
-// uuem array viis kandilised sulud
-$num = [1,2,3,4];
-// objektid, default objekt stdClass, std tähendab standard
-$num = new stdClass();
-var_dump ($num);
-// kui toob välja string (12), siis  näitab baitide, mitte tähemärkide arvu, nt õ puhul 2 baiti
-
-
+$num = 1;
+// saame teha liitmistehteid
+$num = 1 + 1;
+$num = $num + 1;
+// saab ka lühemalt, ehk liida numile + 1
+$num += 1;
+// sama asja saab teha ka teiste tehetega
+$num -= 1;
+$num *= 2;
+$num /= 2;
+// ** oli astendamine
+$num **=2;
+// % jäägiga jagamine
+$num %= 2;
+// ++ ja -- liidab v lahutab ühe
+$num++;
+$num--;
+// pow — Exponential expression, nt pow(num, exponent) arvutab num astmes exponent
+$num = pow(2, 10);
+var_dump($num);
 
 // class Box {
 //     public $width;
