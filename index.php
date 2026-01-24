@@ -1,14 +1,41 @@
 <?php
 
-$num =  1 + 2;
-$num =  0.1 + 0.2; // php annab tulemuseks float(0.30000000000000004)
-// see tuleneb sellest ,et kõiki komaarve ei saa kahendsüsteemis täpselt kirjutada
-// sellepärast nt pangaandmesüsteemides on summad sentides, mitte eurodes
+$bool = true;
+$bool = false;
+$bool = true && false; 
+// && tähendab JA ; JA on tõene ainult siis, kui mõlemad on tõesed
+$bool = true || false; 
+// || = VÕI, VÕI on väär ainult siis, kui mõlemad on väärad
+$bool = !true;
+$bool = !false;
+// ! = EI (inglise keeles NOT), loogiline ümberpööramine
+// Ehk ! ütleb lihtsalt: "kui see on tõene, tee vääraks; kui väär, tee tõeks"
+$bool = 10 == 10; // võrdlustehted
+$bool = 10 == '10'; 
+// kas võrdne tekstiga? Oleneb keelest. Php tõlgendab selle numbriks
+// kui tahan, et igal juhul ka tüüpe kontrolliks, siis ===
+// selle kasutamine pigem soovitav, kõigepealt kontrollib tüüpe
+$bool = 10 === '10'; 
+// != mitte võrdub ja range mitte võrdub !==
+// !== tähendab ei võrdu täpselt (not identical) ehk
+//Väärtus on küll sama, aga tüüp erineb → true
+$bool = 10 != '10';
+$bool = 10 !== '10';
+$bool = 10 < 2;
+$bool = 10 > 2;
+$bool = 10 >= 10;
+$bool = 10 <= 10;
+$bool = (true && false) || !(true || !false); //(true && false) → false
+// !false = true, true || true = true, !true = false
+// false || false = false, ehk $bool = false
+var_dump($bool);
+false && var_dump('bla');
+// kui esimene on false, siis ta isegi ei loe, mis järgneb && märgile.
+// Vasak pool on juba false → kogu avaldis on false → pole mõtet edasi vaadata
+// && võib takistada koodi käivitamist
+// See on tahtlik ja kasulik käitumine, mitte viga
+// Seda kasutatakse tihti tingimuslikes kontrollides
 
-// üks võimalus, kuidas lahendada
-$num = round (0.1 + 0.2, 1);
-$num = round (0.1*10 + 0.2*10)/10;
-var_dump($num);
 
 
 // class Box {
