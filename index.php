@@ -1,40 +1,66 @@
 <?php
+//massiivid
+$array = [1 , 2, 3];
+var_dump($array[1]);
+//kuidas lisada massiivi, array [] = 4 lisab array lõppu selle väärtuse
+$array[] = 4;
+// saab array-s olevat arvu muuta
+$array[2] = 22;
+$array = [
+    'name' => 'Christina',
+    'age' => 50,
+    ];
+//See on võti ja väärtus (key => value)
+//Seega massiiv sidub võtme "name" väärtusega "Christina"
 
-$bool = true;
-$bool = false;
-$bool = true && false; 
-// && tähendab JA ; JA on tõene ainult siis, kui mõlemad on tõesed
-$bool = true || false; 
-// || = VÕI, VÕI on väär ainult siis, kui mõlemad on väärad
-$bool = !true;
-$bool = !false;
-// ! = EI (inglise keeles NOT), loogiline ümberpööramine
-// Ehk ! ütleb lihtsalt: "kui see on tõene, tee vääraks; kui väär, tee tõeks"
-$bool = 10 == 10; // võrdlustehted
-$bool = 10 == '10'; 
-// kas võrdne tekstiga? Oleneb keelest. Php tõlgendab selle numbriks
-// kui tahan, et igal juhul ka tüüpe kontrolliks, siis ===
-// selle kasutamine pigem soovitav, kõigepealt kontrollib tüüpe
-$bool = 10 === '10'; 
-// != mitte võrdub ja range mitte võrdub !==
-// !== tähendab ei võrdu täpselt (not identical) ehk
-//Väärtus on küll sama, aga tüüp erineb → true
-$bool = 10 != '10';
-$bool = 10 !== '10';
-$bool = 10 < 2;
-$bool = 10 > 2;
-$bool = 10 >= 10;
-$bool = 10 <= 10;
-$bool = (true && false) || !(true || !false); //(true && false) → false
-// !false = true, true || true = true, !true = false
-// false || false = false, ehk $bool = false
-var_dump($bool);
-false && var_dump('bla');
-// kui esimene on false, siis ta isegi ei loe, mis järgneb && märgile.
-// Vasak pool on juba false → kogu avaldis on false → pole mõtet edasi vaadata
-// && võib takistada koodi käivitamist
-// See on tahtlik ja kasulik käitumine, mitte viga
-// Seda kasutatakse tihti tingimuslikes kontrollides
+// võib ka miksida
+$array = [
+    1,
+    'hello' => 'world',
+    2,
+    3,
+    'cool' => 'stuff',
+    '4',
+    true,
+    [1, 2, 3],
+    ];
+// kui array sisaldab omakorda array'd, siis neid nimetatakse mitmemõõtmeliseks array'ks
+// kui tahad teise array väärtust kätte saada, siis nii:
+var_dump($array[5],[1]);
+$array = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9],
+];
+var_dump($array[1][2]);
+$array = [
+    [[1,2,3],
+    [4,5,6],
+    [7,8,9],[1,2,3],
+    [4,5,6],
+    [7,8,9],[1,2,3],
+    [4,5,6],
+    [7,8,9],],
+    [[1,2,3],
+    [4,5,6],
+    [7,8,9],[1,2,3],
+    [4,5,6],
+    [7,8,9],[1,2,3],
+    [4,5,6],
+    [7,8,9],],
+    [[1,2,3],
+    [4,5,6],
+    [7,8,9],[1,2,3],
+    [4,5,6],
+    [7,8,9],[1,2,3],
+    [4,5,6],
+    [7,8,9]],
+];
+var_dump($array[2][2][2]);
+$array = ['apple', 'cherry','banana'];
+$text = implode(',',$array); // see muudab nimekirja väärtustest teksti
+// explode töötab vastupidi, muudab teksti array'ks
+var_dump($text);
 
 
 
