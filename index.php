@@ -1,25 +1,18 @@
 <?php
 
-$num = 1;
-// saame teha liitmistehteid
-$num = 1 + 1;
-$num = $num + 1;
-// saab ka lühemalt, ehk liida numile + 1
-$num += 1;
-// sama asja saab teha ka teiste tehetega
-$num -= 1;
-$num *= 2;
-$num /= 2;
-// ** oli astendamine
-$num **=2;
-// % jäägiga jagamine
-$num %= 2;
-// ++ ja -- liidab v lahutab ühe
-$num++;
-$num--;
-// pow — Exponential expression, nt pow(num, exponent) arvutab num astmes exponent
-$num = pow(2, 10);
-var_dump($num);
+$text = 'hello';
+// teksti liitmiseks on php-s eraldi märk, see on punkt .
+$text = $text . ' christina';
+// on ka lühem variant .=
+$text .= '!!!!';
+// erinevaid stringi funktsioone https://www.php.net/manual/en/ref.strings.php
+// nt ucwords - Uppercase the first character of each word in a string
+$text = ucwords($text);
+
+var_dump($text);
+// string e. sõne, string toimib ka array'na, 2 positsioon,
+// ehk saad viidata üksikutele tähtedele, array algab siis alati 0-ga
+var_dump($text[2]);
 
 // class Box {
 //     public $width;
