@@ -1,18 +1,11 @@
 <?php
 
-$text = 'hello';
-// teksti liitmiseks on php-s eraldi märk, see on punkt .
-$text = $text . ' christina';
-// on ka lühem variant .=
-$text .= '!!!!';
-// erinevaid stringi funktsioone https://www.php.net/manual/en/ref.strings.php
-// nt ucwords - Uppercase the first character of each word in a string
-$text = ucwords($text);
+$num =  1 + 2;
+$num =  0.1 + 0.2; // php annab tulemuseks float(0.30000000000000004)
+// see tuleneb sellest ,et kõiki komaarve ei saa kahendsüsteemis täpselt kirjutada
+// sellepärast nt pangaandmesüsteemides on summad sentides, mitte eurodes
+var_dump($num);
 
-var_dump($text);
-// string e. sõne, string toimib ka array'na, 2 positsioon,
-// ehk saad viidata üksikutele tähtedele, array algab siis alati 0-ga
-var_dump($text[2]);
 
 // class Box {
 //     public $width;
