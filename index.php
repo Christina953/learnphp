@@ -1,61 +1,46 @@
 <?php
 
-//kontrollstruktuurid
- $num = 10;
- if ($num > 10){
-    var_dump('Bigger than 10');
-} else if ($num === 10) {
-    var_dump('Equal to 10');
-} else {
-    var_dump('Smaller than 10');
+// for loop - for tsüklis kolm osa, eraldatakse semikooloniga
+// esimeses osas luuakse loendur, $i on muutuja (tihti kasutatakse just i, sest index) ja sellele antakse algväärtus
+// paneb paika, kui kaua seda kontrolli tehakse, Tsükkel töötab seni, kuni see on tõene
+// samm / muutmine, See juhtub pärast iga tsükli ringi, $i++ tähendab: suurenda $i väärtust ühe võrra
+
+for($i=0; $i<10 ; $i++) {
+    var_dump($i);
+}
+// sama asja võib teha ka teistmoodi, nii käib tagurpidi
+for($i=10; $i>0 ; $i--) {
+    var_dump($i);
+}
+// _ võib kasutada suurte numbrite puhul tuhandete eraldajana
+for($i=8; $i<10_000_000 ; $i*=2) {
+    var_dump($i);
 }
 
-$day = (int)date( 'N' , strtotime('25.01.2026')); // date ('N) annab, mitmes nädalapäev täna on
-// strtotime() muudab teksti kujul kuupäeva ajaks (timestamp’iks)
-// Tulemus on arv, millest PHP saab aru, et see on kindel kuupäev
-//Mõtle: “tee tekstist kuupäev, millega arvuti oskab töötada”
-//date('N', ...) - date() vormindab kuupäeva, 'N' tähendab: nädalapäeva number
+//while loop - siin ei tea mitu korda alati
+$time = time(); // tagastab Unix timestamp
+var_dump($time);
+$i = 0;
+while($time+3 > time()){ //Tee tsüklit nii kaua, kuni algusaeg + 3 sekundit on suurem kui praegune aeg
+    $i++; //Iga tsükli ring: $i suureneb 1 võrra, Midagi muud ei juhtu, tsükkel jookseb nii kiiresti kui CPU suudab
+}
+var_dump($i); // Näitab, mitu korda tsükkel 3 sekundi jooksul käis, erinev igal käivitamisel, sõltub arvuti kiirusest
 
-var_dump($day);
+// do while kood käivitab tsükli sisu täpselt ühe korra,
+// käivitab sisu kõigepealt ja alles pärast seda kontrollib tingimust
+do {
+    var_dump('DO');
+} while(false);
 
-if($day === 1){
-    var_dump('Monday');
-} else if ($day === 2) {
-    var_dump('Tuesday');
-} else if ($day === 3) {
-    var_dump('Wednesday');
-} else if ($day === 4) {
-    var_dump('Thursday');
-} else if ($day === 5) {
-    var_dump('Friday');
-} else if ($day === 6 || $day === 7) {
-    var_dump('It is weekend!');
-} else {
-    var_dump('Weird day');
+$array = ['apple', 'cherry', 'pear'];
+foreach($array as $value) {  //foreach käib iga massiivi elemendi läbi, ükshaaval. $value on ajutine muutuja
+// , igal tsükli ringil saab ta järgmise elemendi väärtuse, kirjutab rea haaval välja
+    var_dump($value);
 }
 
-switch($day) {
-    case 1:
-       var_dump('Monday');
-       break; // loeb nii kaua kui jõuab break'ini
-    case 2:
-        var_dump('Tuesday');
-        break;
-    case 3:
-       var_dump('Wednesday');
-       break;
-    case 4:
-       var_dump('Thursday');
-       break;
-    case 5:
-       var_dump('Friday');
-       break;
-    case 6:
-    case 7:
-       var_dump('It is weekend!');
-       break;
-    default:
-        var_dump('Weird day');
+$array = ['apple', 'cherry', 'pear'];
+foreach($array as $key => $value) { // $key on massiivi võtme väärtus ehk indeks, mille all see element massiivis asub
+    var_dump($key, $value);
 }
 
 // class Box {
