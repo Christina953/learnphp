@@ -3,25 +3,29 @@
 // klassid, kokkulepe klasside nimed suure tähega
 // klass määrab omadused + tegevus
 // klass ei ole objekt
-// public tähendab: “Seda omadust või meetodit võib kasutada igaüks, igalt poolt.”
-
+// funktsioonid on tihti public, aga omadused private
 
 class Box {
-    public $width;
+    public $width; // “Seda omadust või meetodit võib kasutada igaüks, igalt poolt.”
+    // protected $width; saab kasutada selles klassis ja tema alamklassides
+    // private $width; saab kasutada ainult selles samas klassis
     public $height;
     public $length;
 
-    public function volume() {
-        return $this->width * $this->height * $this->length; // kui this ees $ siis peale noolt enamasit $ pole vaja
-    } // $this on eriline muutuja, mis viitab praegusele objektile.
-      //Teisisõnu: see “mina” objekt, mille sees see meetod töötab.
-      //Kui oleks ainult width → PHP ei tea, millise objekti width sa mõtled
-      // $this ütleb: “kasuta just seda objekti, millelt meetod kutsuti”
-}
+    // Miks üldse peita omadusi? 1) hoiab andmed kontrolli all 2)väldib valesid väärtusi (nt laius = -100)
+    // 3) koodi on hiljem lihtsam muuta. Kuidas vältida neg väärtust publicu puhul?
 
-// inheritance, üks klass saab teise klassi omadused ja meetodid endale,
-// extends Box ütleb PHP-le: „Võta kõik, mis on Box klassis,
-// ja anna see MetalBox klassile (alamklass), ilma, et peaksid neid uuesti kirjutama.
+    public function setLength(int $length) {
+        if($length<0){
+            throw new Exception('Add positive value'); // throw ja return lõpetab, siin else pole vaja
+        }
+        $this->length = $length;
+    }
+
+    public function volume() {
+        return $this->width * $this->height * $this->length; 
+    }
+}
 
 class MetalBox extends Box {
     public $weightPerUnit;
@@ -32,8 +36,5 @@ class MetalBox extends Box {
 $metal1 = new MetalBox();
 $metal1->width = 10;
 $metal1->height = 10;
-$metal1->length = 10;
-$metal1->weightPerUnit = 2;
+$metal1->setLength(10);
 var_dump($metal1);
-var_dump($metal1->volume());
-var_dump($metal1->weight());
