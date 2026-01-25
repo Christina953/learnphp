@@ -1,35 +1,50 @@
 <?php
-// klassi staatilised omadused, tegevused
-// static tähendab: see kuulub KLASSILE, mitte objektile. Staatilises meetodis EI OLE $this
-// Staatiline omadus või meetod on seotud klassiga, mitte objektiga, ja seda kasutatakse klassi nime kaudu
-class Box {
-    public static $count;
+// interface
 
-    public static function getCount(){ // Seda kutsutakse ilma objektita // staatilises funktsioonis ei saa $this välja kutsuda
-        var_dump(self::class); // self viitab classile Box
-        var_dump(self::$count);
-        var_dump(static::class); // static viitab sellele klassile kes ta välja kutsus
-        var_dump(static::$count);
-    }
-    public function getWidth(){// siin saab static kasutada, sest see on olemas kui klass defineeritud
-        var_dump(self::class); 
-        var_dump(self::$count);
-        var_dump(static::class); 
-        var_dump(static::$count);
-        var_dump($this->width);
+// on olemas library kood, teised user'id ei või seda muuta
+// oletame, et siis teeb mingi complex taski, lihtne näide allpool
+
+class Job {
+    public function task(Logger $logger) { //olen valmis vastu võtma ükskõik mis klassi mis vastab sellele lepingule
+        for($i=0;$i<10;$i++) {
+            // n some complex task
+            // et teeks selle echo "Task $i done\n"; asemel
+            $logger->log("Task $i done");
+        }
     }
 }
 
-class MetalBox extends Box{
-
+class ConsoleLogger implements Logger {
+    public function log($message) {
+        echo "$message\n";
+    }
+}
+// kui tuleb palju eri soove kasutajatelt, saab rakendada interface'i
+// interface on nagu leping, tal ei ole sisu, vaid ta ütleb, et sul peab olema selline asi
+//Lihtsalt öeldes: interface on tööjuhis klassidele, mis tagab, et kõik nendest järgivad samu reegleid.
+interface Logger {
+    public function log($message);
 }
 
-Box::$count = 1;
-Box::$count = 2; 
-var_dump(Box::$count, Box::$count);
-Box::getCount();
-var_dump(Box::class);
-MetalBox::getCount();
-$box1 = new Box();
-$box1->getWidth();
+
+
+
+// siis tuleb kasutaja, kes tahab seda kasutada, ja tahaks midagi muuta, 
+// kui on tehtud interface, siis võib kasutaja luua nii palju loggereid kui vaja
+class NothingLogger implements Logger {
+    public function log($message) {
+        
+    }
+}
+class FileLogger implements Logger {
+    public function log ($message) {
+        $file =fopen('log.log', 'a');
+        fwrite($file, "$message\n");
+        fclose($file);
+    }
+}
+$job = new Job();
+$logger = new FileLogger();
+$job->task($logger);
+
 
