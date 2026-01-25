@@ -3,6 +3,7 @@
 // klassid, kokkulepe klasside nimed suure tähega
 // klass määrab omadused + tegevus
 // klass ei ole objekt
+// public tähendab: “Seda omadust või meetodit võib kasutada igaüks, igalt poolt.”
 
 
 class Box {
@@ -18,18 +19,21 @@ class Box {
       // $this ütleb: “kasuta just seda objekti, millelt meetod kutsuti”
 }
 
-$box1 = new Box();
-$box1->width = 10;
-$box1->height = 10;
-$box1->length = 10;
-var_dump($box1->volume());
-var_dump($box1);
+// inheritance, üks klass saab teise klassi omadused ja meetodid endale,
+// extends Box ütleb PHP-le: „Võta kõik, mis on Box klassis,
+// ja anna see MetalBox klassile (alamklass), ilma, et peaksid neid uuesti kirjutama.
 
-$box2 = new Box();
-$box2->width = 20;
-$box2->height = 20;
-$box2->length = 20;
-var_dump($box2->volume());
-var_dump($box2);
-var_dump($box1);
-
+class MetalBox extends Box {
+    public $weightPerUnit;
+    public function weight () {
+        return $this ->volume() * $this-> weightPerUnit;
+    }
+}
+$metal1 = new MetalBox();
+$metal1->width = 10;
+$metal1->height = 10;
+$metal1->length = 10;
+$metal1->weightPerUnit = 2;
+var_dump($metal1);
+var_dump($metal1->volume());
+var_dump($metal1->weight());
