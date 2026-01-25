@@ -60,11 +60,25 @@ class Box {
 }
 
 class MetalBox extends Box {
+    use HasSmell; // kasutan trait'i HasSmell    
     public $weightPerUnit;
+
     public function weight () {
         return $this ->volume() * $this-> weightPerUnit;
     }
 }
+ // Trait = korduvkasutatav koodijupp (meetodid ja omadused), mida saab lisada mitmesse klassi.
+ // Hakatakse tavaliselt kasutama siis, kui inheritance’ist (extends) enam ei piisa.
+ // klass saab pärida ainult ühest klassist (extends), aga vahel tahad sama funktsionaalsust mitmesse eri klassi
+ // ilma koodi kopeerimata
+
+trait HasSmell {
+    public $smell;
+    public function sniff(){
+        var_dump($this->smell);
+    }
+}
+
 function makeBox() { // toimib funktsiooni sees, aga hävitatakse funktsiooni lõppedes
     $metal1 = new MetalBox(10,10,10);
     var_dump($metal1);
