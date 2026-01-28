@@ -3,6 +3,7 @@
 <?php include 'partials/nav.php'; ?>
 
   <main class="container">
+    <?php $title = 'U.S News'; ?>
     <?php include 'partials/hero.php'; ?>
     <?php include 'partials/featured.php'; ?>
 
