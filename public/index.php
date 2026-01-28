@@ -9,13 +9,16 @@ function dump(...$vars) { // ... annab võimaluse printida välja erinevaid
 
 switch($_SERVER['REQUEST_URI']) {
     case '/':
-        include '../views/index.php';
+        $title = 'World News';
+        include '../views/page.php';
         break;
     case '/us':
-        include '../views/us.php';
+        $title = 'U.S News';
+        include '../views/page.php';
         break;
     case '/tech':
-        include '../views/tech.php';
+        $title = 'Tech News';
+        include '../views/page.php';
         break;
     default:
         echo '404 - page not found';      
