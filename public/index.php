@@ -1,57 +1,33 @@
 <?php
-// et saada teada, mis kasutaja on sisestanud $_SERVER on globaalne muutuja
-// et oleks formateeritud
-function dump(...$vars) { // ... annab võimaluse printida välja erinevaid
+
+function dump(...$vars) {
     echo '<pre>';
     var_dump(...$vars);
     echo '</pre>';
 }
 
-//include '../src/Router.php'; // kui include feilib, siis ta ei anna fatal errorit, klasside jaoks on parem require
-// kui kutsuda klassi välja mitu korda, siis tekib error, siis saab lisada _once, sellisel juhul ainult üks laetakse ära
-// require_once '../src/Router.php';
-// require_once '../src/DB.php';
-// kuna klasse palju, siis lihtsam require asemel kasutada spl_autoload_registrit,
-// “Kui keegi proovib kasutada klassi, mida pole veel laaditud, kutsu see funktsioon.”
-// PHP annab sellele funktsioonile klassi täisnime (koos namespace’iga).
-// PHP-s (nagu paljudes keeltes) on \ erimärk – seda kasutatakse escape-märgina.
-// Näited: \n → reavahetus; \t → tab; \" → jutumärk stringis
-// Seega ühte kaldkriipsu ei saa stringis niisama kirjutada. üks \ stringi sees = \\ koodis
-
-spl_autoload_register(function ($class) {
+spl_autoload_register(function ($class) { // autoloader, klasside automaatne laadimine
     
-    $class = str_replace('App\\', '', $class); // See eemaldab namespace’i alguse App\. Miks? Sest failid on kaustas src/ ilma App/ kaustata.
-    
+    $class = str_replace('App\\', '', $class);
     require_once "../src/$class.php";
 });
 
-use App\Controllers\PublicController as PC; // siis võib edaspidi kasutada ainult klassi nime, kui vaja sageli kasutada
-// use ... as kasutab aliast
-use App\Router;
+require '../routes.php'; // php loeb routes.php faili läbi, seal kutsutakse Router::addRoute, kõik route'd lisatakse Routeri staatilisse massiivi
 
-$router = new Router();
-dump($router);
+use App\Router; // lubab kirjutada new Router mitte app\router
 
-$db = new App\DB();
-dump($db);
+$router = new Router($_SERVER['REQUEST_URI']); // routeri objekti loomine, kui kasutaja läheb http://localhost:8000/ siis see väärtus antakse routeri konstruktorile
+$match = $router->match(); // router vaatab kõiki route , kui leiab route['path'] === $this->path siis tagastab
+if ($match){ //kui leieab, siis minnakse sisse
+    if(is_callable($match['action'])) { // is_callable kontrollib kas saab välja kutsuda
+       call_user_func($match['action']); // käivitab selle funktsiooni
+    } else if (is_array($match['action'])) {
+        $className = $match['action'][0];
+        $controller = new $className();
+        $method = $match['action'][1];
+        $controller->$method();
+    }
+} else {
+        echo '404 - page not found';
+}
 
-$controller = new PC();
-dump($controller);
-
-
-// switch($_SERVER['REQUEST_URI']) {
-//     case '/':
-//         $title = 'World News';
-//         include '../views/page.php';
-//         break;
-//     case '/us':
-//         $title = 'U.S News';
-//         include '../views/page.php';
-//         break;
-//     case '/tech':
-//         $title = 'Tech News';
-//         include '../views/page.php';
-//         break;
-//     default:
-//         echo '404 - page not found';      
-// }
