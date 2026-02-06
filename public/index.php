@@ -1,9 +1,11 @@
 <?php
 
-function dump(...$vars) {
+// funktsioon võib vastu võtta 1, 2, 3, 10 või kasvõi 0 muutujat, kõik need pannakse kokku ühte massiivi $vars
+function dump(...$vars) { // Nimi dump on suvaline (aga levinud just debug’imiseks)
+// Seda kutsutakse tavaliselt arendamise ajal, kui tahad “piiluda”, mis andmed kuskil liiguvad
     echo '<pre>';
-    var_dump(...$vars);
-    echo '</pre>';
+    var_dump(...$vars); // HTML-i <pre> tähendab: säilitatakse reavahed, säilitatakse taanded, tekst on palju loetavam
+    echo '</pre>'; // Ilma selleta näeks var_dump brauseris üsna jube välja
 }
 
 spl_autoload_register(function ($class) { // autoloader, klasside automaatne laadimine
