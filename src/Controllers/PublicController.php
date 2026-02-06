@@ -7,17 +7,18 @@ class PublicController
     public function index()
     {
         $title = 'World News';
-        include __DIR__ . '/../../views/page.php'; //DIR on PHP maagiline konstant, selle faili kausta täispikk teekond, kus see rida asub, väldib probleemi “works only on my machine”
+        view('page', compact('title')); // võtab muutuja nimed stringidena, otsib need muutujad praegusest scope’ist
+        // teeb neist assotsiatiivse massiivi, tulemuseks = 'title' => 'World News'
     }
 
     public function us()
     {
         $title = 'U.S News';
-        include __DIR__ . '/../../views/page.php';
+        view('page', compact('title'));
     }
     public function tech()
     {
         $title = 'Tech News';
-        include __DIR__ . '/../../views/page.php';
+        view('page', compact('title'));
     }
 }
