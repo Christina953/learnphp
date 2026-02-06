@@ -1,0 +1,1 @@
+php -S localhost:8000 -t public # pika php serveri käivitamise käskluse asemel sh server.sh
