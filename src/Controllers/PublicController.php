@@ -27,6 +27,19 @@ class PublicController
     {
         $name = 'Christina';
         $ryhm = 'KTA-25';
-        view ('templating', compact ('name', 'ryhm'));
+        view('templating', compact('name', 'ryhm'));
+    }
+
+    public function form()
+    {
+        $name = $_GET['name'] ?? 'tundmatu'; // ?? ütlebki ,et kui name sätitud, siis võta name, muidu tundmatu
+        // $name = isset($_GET['name']) ? $_GET['name'] : 'tundmatu'; // if lause ühel real, : on else
+        // $name = 'tundmatu';
+        // if (isset($_GET['name'])) { //isset sobib ka siis kui väärtust pole, see pikk viis
+        //     $name = $_GET['name'];
+        // }
+        $ryhm = $_GET['ryhm'] ?? 'teise kooli'; 
+
+        view('form', compact('name', 'ryhm'));
     }
 }

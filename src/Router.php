@@ -9,8 +9,10 @@ class Router {
     // → alguses on tühi massiiv → sinna hakatakse route’e lisama
     private $path;
 
-    public function __construct($path) { //Konstruktor on eriline meetod. See käivitatakse automaatselt, kui kirjutad new Router(...)
-        $this ->path = $path; // Igal Routeril on oma tee, mille ta konstruktoris kaasa saab.
+    public function __construct($path) { //mida konstruktor teeb: Kui objekt luuakse: võtab ta sisendiks URL-i eemaldab sealt kõik üleliigse
+    // jätab alles ainult tee, salvestab selle objekti omadusse $this->path
+        $this ->path = parse_url($path, PHP_URL_PATH);  // parse_url() on PHP sisseehitatud funktsioon, võtab URL-i ja tükeldab selle osadeks
+    // PHP_URL_PATH ütleb: anna mulle ainult URL-i tee (path), mitte domeen, query ega midagi muud
     }
 
     public function match() {
