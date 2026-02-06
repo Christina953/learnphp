@@ -16,9 +16,17 @@ class PublicController
         $title = 'U.S News';
         view('page', compact('title'));
     }
+
     public function tech()
     {
         $title = 'Tech News';
         view('page', compact('title'));
+    }
+
+    public function templating()
+    {
+        $name = 'Christina';
+        $ryhm = 'KTA-25';
+        view ('templating', compact ('name', 'ryhm'));
     }
 }

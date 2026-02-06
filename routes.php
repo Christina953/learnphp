@@ -9,3 +9,5 @@ Router::addRoute('/', [PublicController::class, 'index']); //kutsud Router meeto
 Router::addRoute('/us', [PublicController::class, 'us']);
 
 Router::addRoute('/tech', [PublicController::class, 'tech']);
+
+Router::addRoute('/templating', [PublicController::class, 'templating']);
