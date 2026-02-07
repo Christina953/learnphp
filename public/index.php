@@ -10,10 +10,11 @@ require __DIR__ . '/../helpers.php';
 require __DIR__. '/../routes.php';
 
 use App\Router; 
+// dump($_SERVER); 
 
-$router = new Router($_SERVER['REQUEST_URI']); // routeri objekti loomine, kui kasutaja läheb http://localhost:8000/ siis see väärtus antakse routeri konstruktorile
-$match = $router->match(); // router vaatab kõiki route , kui leiab route['path'] === $this->path siis tagastab
-if ($match){ //kui leieab, siis minnakse sisse
+$router = new Router($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']); 
+$match = $router->match();
+if ($match){ 
     if(is_callable($match['action'])) { // is_callable kontrollib kas saab välja kutsuda
        call_user_func($match['action']); // käivitab selle funktsiooni
     } else if (is_array($match['action'])) {
