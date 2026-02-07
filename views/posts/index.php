@@ -3,7 +3,7 @@
 <?php include __DIR__ . '/../partials/nav.php'; ?>
 
 <main class="container">
-    <a href="" class="btn btn-primary">Add Post</a>
+    <a href="/posts/create" class="btn btn-primary">Add Post</a>
     <table class="table table-striped table-hover">
         <thead>
             <th>ID</th>
@@ -17,9 +17,9 @@
                     <td><?= $post->title ?></td>
                     <td>
                         <div class="btn-group">
-                            <a href="#" class="btn btn-info">View</a>
-                            <a href="#" class="btn btn-warning">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                            <a href="/posts/view?id=<?= $post->id ?>" class="btn btn-info">View</a>
+                            <a href="/posts/edit?id=<?= $post->id ?>" class="btn btn-warning">Edit</a>
+                            <a href="/posts/delete?id=<?= $post->id ?>" class="btn btn-danger">Delete</a>
                         </div>
                     </td>
                 </tr>

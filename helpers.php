@@ -12,3 +12,12 @@ function view($viewName, $variables=[])
     // teeb sisuliselt selle: $title = 'World News';
     include __DIR__ . "/views/$viewName.php"; 
 }
+
+function dd(...$vars) { // dd= dump & die
+    dump(...$vars);
+    die;
+}
+
+function redirect($path) {
+    header('Location: /posts');
+}
