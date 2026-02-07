@@ -4,9 +4,11 @@
 
 <main class="container">
   <h1>Tere <?= $name ?>, <?= $ryhm ?> õpilane!</h1>
-  <form>
+  <form action="/answer?color=green&music=pop" method="POST"><!-- by default on GET meetod, kui muud,siis peab ütlema, by default saadab samale lehele -->
+    <!-- Postiga saad saata nii GET kui POST andmeid, GETiga ainul GETandmeid-->
     <input name="name" type="text"> <!-- infol mida saadad peab olema nimetus, lisataks query parameetritena url ribale -->
     <input name="ryhm" type="text">
+    <input name="pw" type="password">
     <button>Send</button>
     <input type="submit" value="Saada"> <!-- teine võimalus nö nuppu lisada -->
   </form>
