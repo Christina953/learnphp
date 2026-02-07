@@ -63,7 +63,7 @@
         <a class="nav-item nav-link link-body-emphasis" href="/templating">Templating</a>
         <a class="nav-item nav-link link-body-emphasis" href="/form">Form</a>
         <a class="nav-item nav-link link-body-emphasis" href="/form?name=Margo&ryhm=KTA23">Prefilled Form</a>
-        <a class="nav-item nav-link link-body-emphasis" href="#">Business</a>
+        <a class="nav-item nav-link link-body-emphasis" href="/posts">Posts</a>
         <a class="nav-item nav-link link-body-emphasis" href="#">Politics</a>
         <a class="nav-item nav-link link-body-emphasis" href="#">Opinion</a>
         <a class="nav-item nav-link link-body-emphasis" href="#">Science</a>
