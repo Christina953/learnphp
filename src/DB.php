@@ -51,6 +51,15 @@ class DB
         return $stmt->fetch();
     }
 
+    public function where($table, $class, $field, $value)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM $table WHERE $field='$value'");
+        $stmt->execute();
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, $class);
+        return $stmt->fetchAll();
+    }
+
     public function insert($table, $fields)
     {
         $fieldNames = array_keys($fields);

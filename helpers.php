@@ -1,5 +1,8 @@
 <?php
 // abifunktsioonid
+
+use App\Models\User;
+
 function dump(...$vars) {
     echo '<pre>';
     var_dump(...$vars); 
@@ -19,5 +22,14 @@ function dd(...$vars) { // dd= dump & die
 }
 
 function redirect($path) {
-    header('Location: /posts');
+    header('Location: ' . $path);
+
+}
+
+function auth() {
+    $id = $_SESSION['userId'] ?? null;
+    if($id) {
+        return User::find($id);
+    }
+    return null;
 }
