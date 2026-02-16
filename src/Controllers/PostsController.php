@@ -20,6 +20,15 @@ class PostsController
     }
     public function store()
     {
+        $from = $_FILES['image']['tmp_name'];
+        do {
+            $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            $filename = md5($_FILES['image']['name'] . microtime() . rand(PHP_INT_MIN, PHP_INT_MAX)) . '.' . $ext;
+            // et and failinimele unikaalsust
+            $to = __DIR__ . '/../../public/uploads/' . $filename;
+        } while (file_exists($to));
+        move_uploaded_file($from, $to);
+        dd($_POST, $_FILES);
         $post = new Post();
         $post->title = $_POST['title'];
         $post->body = $_POST['body'];

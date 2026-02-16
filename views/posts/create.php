@@ -3,7 +3,7 @@
 <?php include __DIR__ . '/../partials/nav.php'; ?>
 
 <main class="container">
-    <form action="/posts" method="POST">
+    <form action="/posts" method="POST" enctype="multipart/form-data"> <!-- see vajalik kui tahad faili uploadida -->
         <div class="mb-3">
             <label for="title" class="form-label">Title</label> <!-- for ja id peavad olema samad -->
             <input name="title" type="text" class="form-control" id="title" placeholder="Some title ...">
@@ -11,6 +11,10 @@
         <div class="mb-3">
             <label for="body" class="form-label">Content</label>
             <textarea name="body" class="form-control" id="body" rows="3"></textarea>
+        </div>
+         <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input name="image" type="file" class="form-control" id="image">
         </div>
         <button class="btn btn-primary">Create</button>
     </form>
