@@ -3,11 +3,12 @@
 
 use App\Models\User;
 
-function dump(...$vars) {
-    echo '<pre>';
-    var_dump(...$vars); 
-    echo '</pre>'; 
-}
+// asendan package'ga
+// function dump(...$vars) {
+//     echo '<pre>';
+//     var_dump(...$vars); 
+//     echo '</pre>'; 
+// }
 
 function view($viewName, $variables=[])
 {
@@ -16,10 +17,11 @@ function view($viewName, $variables=[])
     include __DIR__ . "/views/$viewName.php"; 
 }
 
-function dd(...$vars) { // dd= dump & die
-    dump(...$vars);
-    die;
-}
+// asendan package'ga
+// function dd(...$vars) { // dd= dump & die
+//     dump(...$vars);
+//     die;
+// }
 
 function redirect($path) {
     header('Location: ' . $path);
